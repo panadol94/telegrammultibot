@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   bot:
@@ -15,7 +15,7 @@ services:
       - LOG_LEVEL=INFO
       - DB_POOL_SIZE=5
       # Telegram Secrets (Set these in .env)
-      - TOKEN=${TOKEN} 
+      - TOKEN=${TOKEN}
       # Optional: set PUBLIC_BASE_URL if you want /addbot to auto-configure webhook
       - PUBLIC_BASE_URL=${PUBLIC_BASE_URL}
     depends_on:
@@ -23,7 +23,7 @@ services:
     volumes:
       # Optional: mount logs
       # - ./logs:/app/logs
-      - ./.env:/app/.env
+      # - ./.env:/app/.env
 
   db:
     image: postgres:15-alpine
