@@ -20,10 +20,7 @@ services:
       - PUBLIC_BASE_URL=${PUBLIC_BASE_URL}
     depends_on:
       - db
-    volumes:
-      # Optional: mount logs
-      # - ./logs:/app/logs
-      # - ./.env:/app/.env
+
 
   db:
     image: postgres:15-alpine
