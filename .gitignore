@@ -5,3 +5,5 @@ venv/
 .DS_Store
 backup.sql
 *.zip
+deploy.bat
+cloud-sql-proxy.exe
