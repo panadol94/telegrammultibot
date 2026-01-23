@@ -6,35 +6,16 @@ services:
     container_name: boda8-bot
     restart: always
     ports:
-      - "8080:8080"
+      - "8081:8080"
     environment:
       - PORT=8080
-      - DATABASE_URL=postgresql://boda8:boda8secret@db:5432/boda8db
+      # Use the DATABASE_URL provided by Coolify (Managed DB)
+      # - DATABASE_URL=postgresql://...
       - TZ=Asia/Kuala_Lumpur
       # App Config
       - LOG_LEVEL=INFO
       - DB_POOL_SIZE=5
-      # Telegram Secrets (Set these in .env)
+      # Telegram Secrets (Set these in Coolify Env Vars)
       - TOKEN=${TOKEN}
       # Optional: set PUBLIC_BASE_URL if you want /addbot to auto-configure webhook
       - PUBLIC_BASE_URL=${PUBLIC_BASE_URL}
-    depends_on:
-      - db
-
-
-  db:
-    image: postgres:15-alpine
-    container_name: boda8-db
-    restart: always
-    environment:
-      - POSTGRES_USER=boda8
-      - POSTGRES_PASSWORD=boda8secret
-      - POSTGRES_DB=boda8db
-    volumes:
-      - pg_data:/var/lib/postgresql/data
-      # ports:
-      #   # Expose if you need to access DB externally, otherwise keep internal for security
-      #   - "5432:5432"
-
-volumes:
-  pg_data:
