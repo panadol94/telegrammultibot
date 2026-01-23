@@ -32,9 +32,9 @@ services:
       - POSTGRES_DB=boda8db
     volumes:
       - pg_data:/var/lib/postgresql/data
-    ports:
-      # Expose if you need to access DB externally, otherwise keep internal for security
-      - "5432:5432"
+      # ports:
+      #   # Expose if you need to access DB externally, otherwise keep internal for security
+      #   - "5432:5432"
 
 volumes:
   pg_data:
