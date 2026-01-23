@@ -7,15 +7,27 @@ services:
     restart: always
     ports:
       - "8081:8080"
+    depends_on:
+      - db
     environment:
       - PORT=8080
-      # Use the DATABASE_URL provided by Coolify (Managed DB)
-      # - DATABASE_URL=postgresql://...
+      - DATABASE_URL=postgresql://user:password@db:5432/telegram_bot
       - TZ=Asia/Kuala_Lumpur
-      # App Config
       - LOG_LEVEL=INFO
       - DB_POOL_SIZE=5
-      # Telegram Secrets (Set these in Coolify Env Vars)
       - TOKEN=${TOKEN}
-      # Optional: set PUBLIC_BASE_URL if you want /addbot to auto-configure webhook
       - PUBLIC_BASE_URL=${PUBLIC_BASE_URL}
+
+  db:
+    image: postgres:15-alpine
+    container_name: boda8-db
+    restart: always
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=telegram_bot
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
